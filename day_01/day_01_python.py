@@ -32,5 +32,5 @@ numbers_in_list = read_input_with_pattern("input.txt", r"\d")
 print(f"Part 1: {sum_first_and_last_number(numbers_in_list)}")
 
 ## part 2
-numbers_in_list = read_input_with_pattern("input.txt", r"(one|two|three|four|five|six|seven|eight|nine|zero|\d)")
+numbers_in_list = read_input_with_pattern("input.txt", r"(?=(one|two|three|four|five|six|seven|eight|nine|zero|\d))")
 print(f"Part 2: {sum_first_and_last_number(numbers_in_list)}")
