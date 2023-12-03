@@ -39,7 +39,7 @@ export class SolutionDayOne {
     }
 
     partTwo() {
-        const patternPartTwo: RegExp = new RegExp(/(one|two|three|four|five|six|seven|eight|nine|zero|\d)/, "g");
+        const patternPartTwo: RegExp = new RegExp(/(?=(one|two|three|four|five|six|seven|eight|nine|zero|\d))/, "g");
         return this.computeSolution(patternPartTwo);
     }
 }
