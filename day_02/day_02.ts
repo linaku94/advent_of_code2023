@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import {SolutionDayOne} from "../day_01/day_01_typescript";
 
 interface SetOfCubes {
     blue: number
@@ -15,7 +14,10 @@ interface Game {
 export class SolutionDayTwo {
     readInput() {
         let lines = fs.readFileSync("input.txt", "utf-8").split(/\n/);
-        return lines.map((value, index) => <Game>{gameIndex: +index+1, sets: this.parseStringToGameSets(value.split(": ")[1].split("; "))})
+        return lines.map((value, index) => <Game>{
+            gameIndex: +index + 1,
+            sets: this.parseStringToGameSets(value.split(": ")[1].split("; "))
+        })
     }
 
 
@@ -27,9 +29,9 @@ export class SolutionDayTwo {
             let matchRed = new RegExp(/\d*\sred/).exec(game)
             result.push(
                 <SetOfCubes>{
-                    blue: matchBlue? +matchBlue[0].split(" ")[0] : 0,
-                    red: matchRed? +matchRed[0].split(" ")[0] : 0,
-                    green: matchGreen? +matchGreen[0].split(" ")[0] : 0,
+                    blue: matchBlue ? +matchBlue[0].split(" ")[0] : 0,
+                    red: matchRed ? +matchRed[0].split(" ")[0] : 0,
+                    green: matchGreen ? +matchGreen[0].split(" ")[0] : 0,
                 }
             )
         }
@@ -44,7 +46,7 @@ export class SolutionDayTwo {
             for (let gameSet of game.sets) {
                 gameIsValid = (gameSet.blue <= referenceSet.blue && gameSet.red <= referenceSet.red && gameSet.green <= referenceSet.green && gameIsValid)
             }
-            result += gameIsValid? game.gameIndex : 0
+            result += gameIsValid ? game.gameIndex : 0
         }
         return result
     }
@@ -53,13 +55,13 @@ export class SolutionDayTwo {
         let result: SetOfCubes[] = []
         for (let game of games) {
             let a =
-            result.push(
-                <SetOfCubes>{
-                    blue: Math.max(...game.sets.map((value) => value.blue)),
-                    red: Math.max(...game.sets.map((value) => value.red)),
-                    green: Math.max(...game.sets.map((value) => value.green)),
-                }
-            )
+                result.push(
+                    <SetOfCubes>{
+                        blue: Math.max(...game.sets.map((value) => value.blue)),
+                        red: Math.max(...game.sets.map((value) => value.red)),
+                        green: Math.max(...game.sets.map((value) => value.green)),
+                    }
+                )
         }
         return result
     }
@@ -78,7 +80,9 @@ export class SolutionDayTwo {
         const games = this.readInput()
         const minimumSets: SetOfCubes[] = this.findMinimumSets(games)
         const sum = (...arr: number[]) => [...arr].reduce((acc, val) => acc + val, 0);
-        console.log(sum(...minimumSets.map((value, index) => {return value.blue*value.red*value.green})))
+        console.log(sum(...minimumSets.map((value, index) => {
+            return value.blue * value.red * value.green
+        })))
     }
 }
 
