@@ -23,7 +23,7 @@ export class SolutionDayTwo {
 
     parseStringToGameSets(gameString: string[]): SetOfCubes[] {
         let result: SetOfCubes[] = []
-        for (let game of gameString) {
+    for (let game of gameString) {
             let matchGreen = new RegExp(/\d*\sgreen/).exec(game)
             let matchBlue = new RegExp(/\d*\sblue/).exec(game)
             let matchRed = new RegExp(/\d*\sred/).exec(game)
