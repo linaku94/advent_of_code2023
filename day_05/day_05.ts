@@ -16,23 +16,21 @@ export class ResourceMap {
     }
 
     getTargetResource(source: number):number {
-        let result = -1
-        this.ranges.forEach((resourceRange: ResourceRange) => {
+        for (let resourceRange of this.ranges) {
             if (source >= resourceRange.sourceStart && source < resourceRange.sourceStart + resourceRange.size) {
-                result = resourceRange.targetStart + source - resourceRange.sourceStart;
+                return resourceRange.targetStart + source - resourceRange.sourceStart;
             }
-        })
-        return (result==-1)? source : result
+        }
+        return source
     }
 
     getSourceResource(target:number): number {
-        let result = -1
-        this.ranges.forEach((resourceRange: ResourceRange) => {
+        for (let resourceRange of this.ranges) {
             if (target >= resourceRange.targetStart && target < resourceRange.targetStart + resourceRange.size) {
-                result = resourceRange.sourceStart + target- resourceRange.targetStart;
+                return resourceRange.sourceStart + target - resourceRange.targetStart;
             }
-        })
-        return (result==-1)? target : result
+        }
+        return target
     }
 
 }
